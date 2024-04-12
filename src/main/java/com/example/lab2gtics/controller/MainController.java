@@ -13,8 +13,9 @@ public class MainController {
         return "configuracion";
     }
 
-    @GetMapping("/jugar")
+    @GetMapping( value={"/jugar" ,"/minar"})
     public String juego(){
         return "juego";
     }
+
 }
