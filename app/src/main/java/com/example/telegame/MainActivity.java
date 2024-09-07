@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startX.setEnabled(false);
 
         this.editX = (EditText) findViewById(R.id.editarNombre);
+        //Fuente: YT
         //Permite controlar que la activación del boton de jugar para los casos que se escriba antes, durante y después de ingresar el nombre
         editX.addTextChangedListener(new TextWatcher() {
             @Override
@@ -78,13 +79,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
          */
+        getSupportActionBar().setTitle("APPSIoT - Lab 2");
 
-        registerForContextMenu((TextView) findViewById(R.id.title_game));
-
+        registerForContextMenu(findViewById(R.id.title_game));
 
         Button buttonStart = findViewById(R.id.buttonStartGame);
         buttonStart.setOnClickListener(view -> {
-           irAlJuego();
+           irAlJuego(view);
         });
     }
 
@@ -107,26 +108,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onContextItemSelect(@NonNull MenuItem item){
         if(item.getItemId() == R.id.opt_green){
             ((TextView) findViewById(R.id.title_game)).setTextColor(getColor(R.color.green));
-            return true;
-        }else{
-            if(item.getItemId() == R.id.opt_red){
+        }else {
+            if (item.getItemId() == R.id.opt_red) {
                 ((TextView) findViewById(R.id.title_game)).setTextColor(getColor(R.color.red));
-                return true;
-            }else{
-                if(item.getItemId() == R.id.opt_purple){
+            } else {
+                if (item.getItemId() == R.id.opt_purple) {
                     ((TextView) findViewById(R.id.title_game)).setTextColor(getColor(R.color.purple));
-                    return true;
-                }else{
-                    ((TextView) findViewById(R.id.title_game)).setTextColor(getColor(R.color.black));
-                    return super.onContextItemSelected(item);
                 }
             }
         }
+        return super.onContextItemSelected(item);
     }
 
     //Va al juego
-    public void irAlJuego() {
-
+    public void irAlJuego(View view){
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("Name",((TextView) findViewById(R.id.editarNombre)).getText().toString());
         startActivity(intent);

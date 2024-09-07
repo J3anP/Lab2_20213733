@@ -57,6 +57,7 @@ public class GameActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        Log.d(TAG, "ongame");
 
         word_list = getResources().getStringArray(R.array.words_game);
         wordLayout=findViewById(R.id.word_game);
@@ -83,12 +84,13 @@ public class GameActivity extends AppCompatActivity{
             playGame();
         });
 
+
     }
 
     //Manejo del juego
     private void playGame(){
         numGame++;
-        String rdWord=word_list[rd.nextInt(word_list.length)];
+        String rdWord=word_list[new Random().nextInt(word_list.length)];
         while (rdWord.equals(chosenWord))rdWord = word_list[rd.nextInt(word_list.length)];
         chosenWord = rdWord;
         numChars = chosenWord.length();
@@ -170,7 +172,6 @@ public class GameActivity extends AppCompatActivity{
         return found;
     }
 
-
     private void letterFound(){
         if(numCharsCorrect==numChars){
             finishGame(true);
@@ -211,8 +212,6 @@ public class GameActivity extends AppCompatActivity{
         TextView msgGame = findViewById(R.id.noti_game);
         msgGame.setText(msg);
     }
-
-
 
     public void disabledBtn(ArrayList<String> clickW){
         for (String l:clickW){
@@ -312,7 +311,4 @@ public class GameActivity extends AppCompatActivity{
             playGame();
         }
     }
-
-
-
 }
