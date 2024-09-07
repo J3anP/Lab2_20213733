@@ -1,66 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
-    <!--Linerlayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="-103dp"-->
-
-
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="411dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="4dp"
-        android:background="?android:attr/listDivider"
-        android:text="APPSlot - Lab 2"
-        android:gravity="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/text_bienvenido"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="108dp"
         android:text="BIENVENIDO"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        tools:layout_editor_absoluteX="137dp"
+        tools:layout_editor_absoluteY="87dp" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="221dp"
-        android:layout_height="228dp"
+        android:layout_height="271dp"
         android:contentDescription="TODO"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/antenna_logo" />
+        app:srcCompat="@drawable/antenna_logo"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="170dp" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/title_game"
+        android:layout_width="133dp"
+        android:layout_height="76dp"
         android:text="TeleGame"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -70,27 +41,24 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/editarNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Ingrese su nombre"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/buttonStartGame"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            android:id="@+id/editarNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ingrese su nombre"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/buttonStartGame"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_game" />
 
-    <Button
-        android:id="@+id/buttonStartGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jugar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editarNombre" />
+        <Button
+            android:id="@+id/buttonStartGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jugar"
+            tools:layout_editor_absoluteX="161dp"
+            tools:layout_editor_absoluteY="635dp" />
 
-    <!-- En edit y button se agregaron porciones de código, porque salía error por constraints-->
-    <!--/Linearlayour-->
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
