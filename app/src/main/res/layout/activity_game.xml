@@ -14,6 +14,8 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
+        <!-- se puso un relative layout porque las partes del telecp se iran acomodando -->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="283dp"
@@ -67,7 +69,7 @@
                 android:layout_marginTop="132dp"
                 android:translationX="211dp"
                 android:translationY="-28dp"
-                app:srcCompat="@drawable/brazoizq_pierna_dere" />
+                app:srcCompat="@drawable/brazoizq_piernadere" />
 
             <ImageView
                 android:id="@+id/leftleg"
@@ -85,7 +87,7 @@
                 android:layout_marginTop="200dp"
                 android:translationX="260dp"
                 android:translationY="-22dp"
-                app:srcCompat="@drawable/brazoizq_pierna_dere" />
+                app:srcCompat="@drawable/brazoizq_piernadere" />
 
         </RelativeLayout>
 
@@ -125,6 +127,7 @@
                 android:orientation="horizontal"
                 android:layout_height="50dp"
                 android:paddingHorizontal="11dp">
+                <!-- con grid view salía mejor :c, pero no me salió -->
 
                 <Button
                     android:id="@+id/bA"
@@ -533,7 +536,7 @@
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textSize="18sp"
-            android:text="Cancelar"/>
+            android:text="Canceló"/>
 
         <Button
             android:id="@+id/new_game"

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="words_game">
+        <item>FIBRA</item>
+        <item>REDES</item>
+        <item>ANTENA</item>
+        <item>PROPA</item>
+        <item>CLOUD</item>
+        <item>TELECO</item>
+        <item>IOT</item>
+    </string-array>
+</resources>
