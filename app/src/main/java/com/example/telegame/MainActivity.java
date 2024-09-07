@@ -84,10 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button buttonStart = findViewById(R.id.buttonStartGame);
         buttonStart.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, GameActivity.class);
-            //Envía el nombre a la siguiente vista
-            intent.putExtra("Name",((TextView) findViewById(R.id.editarNombre)).getText().toString());
-            launcher.launch(intent);
+           irAlJuego();
         });
     }
 
@@ -128,12 +125,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //Va al juego
-    public void irAlJuego(View view) {
+    public void irAlJuego() {
 
         Intent intent = new Intent(this, GameActivity.class);
-
+        intent.putExtra("Name",((TextView) findViewById(R.id.editarNombre)).getText().toString());
         startActivity(intent);
-
     }
 
     ActivityResultLauncher<Intent> launcher = registerForActivityResult(

@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+<!-- si sale error al compilar puede que sea con la imagen brazodere_piernaizq, debido al nombre, siempre me salía en rojo así
+pero funcionaba -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -111,13 +112,14 @@
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_height="214dp"
+            android:layout_height="209dp"
             android:layout_weight="0">
 
             <LinearLayout
@@ -127,7 +129,7 @@
                 android:orientation="horizontal"
                 android:layout_height="50dp"
                 android:paddingHorizontal="11dp">
-                <!-- con grid view salía mejor :c, pero no me salió -->
+                <!-- con grid view salía mejor :c, pero no me salió la programación que había por detrás-->
 
                 <Button
                     android:id="@+id/bA"
@@ -136,12 +138,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bB"
@@ -150,12 +152,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bC"
@@ -164,12 +166,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bD"
@@ -178,12 +180,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bE"
@@ -192,12 +194,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bF"
@@ -206,12 +208,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bG"
@@ -220,12 +222,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
             </LinearLayout>
 
@@ -245,12 +247,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bI"
@@ -259,12 +261,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bJ"
@@ -273,12 +275,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bK"
@@ -287,12 +289,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bL"
@@ -301,12 +303,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bM"
@@ -315,12 +317,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bN"
@@ -329,13 +331,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:fontFamily="sans-serif"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
             </LinearLayout>
 
@@ -355,12 +356,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/P"
@@ -369,12 +370,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bQ"
@@ -383,12 +384,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bR"
@@ -397,12 +398,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bS"
@@ -411,12 +412,13 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
+
                 <Button
                     android:id="@+id/bT"
                     android:text="T"
@@ -424,12 +426,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/U"
@@ -438,12 +440,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
             </LinearLayout>
 
@@ -463,12 +465,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bW"
@@ -477,12 +479,13 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
+
                 <Button
                     android:id="@+id/bX"
                     android:text="X"
@@ -490,12 +493,12 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
 
                 <Button
                     android:id="@+id/bY"
@@ -504,12 +507,13 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
+
                 <Button
                     android:id="@+id/bZ"
                     android:text="Z"
@@ -517,15 +521,13 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="1dp"
                     android:layout_weight="0"
-                    android:onClick="clickLetra"
                     android:paddingHorizontal="10dp"
                     app:cornerRadius="7dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
-
+                    android:textStyle="bold"
+                    android:onClick="tapping"/>
             </LinearLayout>
-
         </LinearLayout>
 
         <TextView
@@ -535,8 +537,8 @@
             android:gravity="center"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textSize="18sp"
-            android:text="Canceló"/>
+            android:text="Ganó / Terminó en 10s"
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/new_game"
@@ -544,9 +546,8 @@
             android:layout_height="59dp"
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
-            android:layout_marginVertical="12dp"
-            android:text="Nuevo Juego" />
-
+            android:text="Nuevo Juego"
+            android:layout_marginVertical="12dp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
