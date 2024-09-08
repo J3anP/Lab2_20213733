@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
@@ -48,7 +49,6 @@ public class GameActivity extends AppCompatActivity{
     private int numChars;
     private int numCharsCorrect;
     private int sizeTelitoParts=6;
-    private int currPart;
     private int numGame;
     private int playTime;
     private long startTime;
@@ -62,7 +62,6 @@ public class GameActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        Log.d(TAG, "ongame");
 
         word_list = getResources().getStringArray(R.array.words_game);
         wordLayout=findViewById(R.id.word_game);
@@ -79,11 +78,14 @@ public class GameActivity extends AppCompatActivity{
         if(name != null){
             playGame();
         }
-
         Button btnPlayNewGame = findViewById(R.id.new_game);
         btnPlayNewGame.setOnClickListener(l->{
             if(!isOver){
-                notification=notification+(numGame == 1 ? "" : "\n")+"Juego "+numGame+" : Canceló";
+                if (numGame == 1) {
+                    notification += "Juego " + numGame + " : Canceló";
+                } else {
+                    notification += "\nJuego " + numGame + " : Canceló";
+                }
             }
             playGame();
         });
@@ -115,8 +117,7 @@ public class GameActivity extends AppCompatActivity{
             imgV.setVisibility(View.INVISIBLE);
         }
 
-        ((TextView) findViewById(R.id.noti_game)).setText("Qué comience el juego :D");
-
+        //((TextView) findViewById(R.id.noti_game)).setText("Qué comience el juego :D");
         //configuración del juego
         configurationGame();
     }
@@ -138,10 +139,10 @@ public class GameActivity extends AppCompatActivity{
             }
         }
 
-        startTime= System.currentTimeMillis();
         isOver= false;
         trial= 0;
         numCharsCorrect=0;
+        startTime= System.currentTimeMillis();
         Log.d(TAG,notification);
     }
 
@@ -151,9 +152,7 @@ public class GameActivity extends AppCompatActivity{
             String l = String.valueOf(((Button) v).getText());
             clickW.add(l);
 
-            boolean isCorrect = wordIsCorrect(l);
-
-            if(isCorrect){
+            if(wordIsCorrect(l)){
                 letterFound();
             }else{
                 letterNotFound();
@@ -164,11 +163,16 @@ public class GameActivity extends AppCompatActivity{
     private boolean wordIsCorrect(String l){
         boolean found = false;
         LinearLayout lyW = findViewById(R.id.word_game);
-
-        for(int i= 0; i<numChars;i++) {
-            if(String.valueOf(chosenWord.charAt(i)).equals(l)){
-                ((TextView)lyW.getChildAt(i)).setTextColor(Color.BLACK);
-                found=true;
+        SparseArray<TextView> viewArray = new SparseArray<>();
+        //Optimización con SparseArray para evitar que se bloquee el programa
+        for (int i = 0; i < numChars; i++) {
+            viewArray.put(i, (TextView) lyW.getChildAt(i));
+        }
+        for (int i = 0; i < numChars; i++) {
+            TextView textView = viewArray.get(i);
+            if (textView != null && String.valueOf(chosenWord.charAt(i)).equals(l)) {
+                textView.setTextColor(Color.BLACK);
+                found = true;
                 correctW.add(l);
                 numCharsCorrect++;
             }
@@ -187,21 +191,23 @@ public class GameActivity extends AppCompatActivity{
     private void finishGame(boolean won){
         playTime = (int) Math.floor((double) (System.currentTimeMillis()-startTime)/1000);
         TextView msgGame = findViewById(R.id.noti_game);
-    
-        if(won){
-            msgGame.setText("Ganó / Terminó en "+playTime+"s");
-            updateStadistics("Terminó en "+ playTime+"s");
-        }else{
-            msgGame.setText("Perdió / Terminó en "+playTime+"s");
-            updateStadistics("Terminó en "+ playTime+"s");
-        }
+
+        //Aquí utilice una forma de reducir el código, porque a veces se lagea la app y estoy buscando optimizarlo
+        String gameMessage = won ?
+                String.format("Ganó / Terminó en %ds", playTime) :
+                String.format("Perdió / Terminó en %ds", playTime);
+        msgGame.setText(gameMessage);
+
+        updateStadistics(String.format("Terminó en %ds", playTime));
         isOver = true;
     }
 
     private void letterNotFound(){
-        telito_parts[trial].setVisibility(View.VISIBLE);
-        trial++;
-        if(trial == telito_parts.length){
+        if (trial < telito_parts.length) {
+            telito_parts[trial].setVisibility(View.VISIBLE);
+            trial++;
+        }
+        if(trial >= telito_parts.length){
             finishGame(false);
         }else{
             String msg = " ";
@@ -209,7 +215,11 @@ public class GameActivity extends AppCompatActivity{
         }
     }
     private void updateStadistics(String result){
-        notification = notification + (numGame == 1 ? "" : "\n") + "Juego "+numGame + ": " + result;
+        if (numGame == 1) {
+            notification = String.format("Juego %d: %s", numGame, result);
+        } else {
+            notification = String.format("%s\nJuego %d: %s", notification, numGame, result);
+        }
     }
 
     private void updateMsgGame(String msg){
@@ -221,7 +231,6 @@ public class GameActivity extends AppCompatActivity{
 
         LinearLayout lyW = findViewById(R.id.word_game);
         lyW.removeAllViews();
-
         for(int i=0;i<chosenWord.length();i++){
             String l=String.valueOf(chosenWord.charAt(i));
             TextView copyL = new TextView(this);
@@ -232,23 +241,16 @@ public class GameActivity extends AppCompatActivity{
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            parameters.weight = 0;
+            parameters.setMargins(12, 0, 12, 0);
             copyL.setLayoutParams(parameters);
-
             copyL.setText(l);
             copyL.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
             copyL.setGravity(Gravity.CENTER);
             copyL.setPadding(12,0,12,0);
-
             copyL.setTextColor(correctW.contains(l) ? Color.GREEN : Color.DKGRAY);
-
             copyL.setBackgroundResource(R.drawable.line_game);
 
-            if(correctW.contains(l)){
-                copyL.setTextColor(Color.BLACK);
-            }else{
-                copyL.setTextColor(Color.TRANSPARENT);
-            }
+            copyL.setTextColor(correctW.contains(l) ? Color.BLACK : Color.DKGRAY);
 
             lyW.addView(copyL);
         }
@@ -321,14 +323,15 @@ public class GameActivity extends AppCompatActivity{
     ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                //Maneje la lógica para poder manejar el callback solo que salía errores así que decidí poner el código en blackBox y obtuve esto
+                //Maneje la lógica para poder manejar el callback solo que salía errores así que decidí consultar con AI para ver cual era el error y la major manera era separando
                 if (result.getResultCode() == RESULT_OK) {
                     Intent data = result.getData();
                     if(data.getStringExtra("NewGame") != null){
                         playGame();
                     }else{
                         extractDataFromIntent(data);
-                        updateUI(data);
+                        TextView msgGame = findViewById(R.id.noti_game);
+                        msgGame.setText(data.getStringExtra("msgGame"));
                         handleGameLogic(data);
                     }
                 }
@@ -347,11 +350,6 @@ public class GameActivity extends AppCompatActivity{
         correctW = data.getStringArrayListExtra("correctWords");
         clickW = data.getStringArrayListExtra("clickWords");
         isOver = data.getBooleanExtra("terminado", false);
-    }
-
-    private void updateUI(Intent data){
-        TextView msgGame = findViewById(R.id.noti_game);
-        msgGame.setText(data.getStringExtra("msgGame"));
     }
 
     private void handleGameLogic(Intent data){
@@ -374,7 +372,13 @@ public class GameActivity extends AppCompatActivity{
             cleanWords(chosenWord,correctW);
         }else{
             if(!isOver){
-                notification = notification + ((trial == 1) ? "" : "\n") + "Juego "+numGame+": Canceló";
+                //probando eficiencia código para que la app no muera
+                StringBuffer notificationBuffer = new StringBuffer(notification);
+                if (trial != 1) {
+                    notificationBuffer.append("\n");
+                }
+                notificationBuffer.append("Juego ").append(numGame).append(": Canceló");
+                notification = notificationBuffer.toString();
             }
             playGame();
         }
