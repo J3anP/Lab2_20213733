@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.app.ActivityOptionsCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -312,17 +315,65 @@ public class GameActivity extends AppCompatActivity{
             playGame();
         }
     }
-
-    //Manejo de las estadísticas
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    //Manejo de las estadísticas esto fue con ayuda de YT y busqueda en google
     public boolean onOptionsItemSelect(@NonNull MenuItem item){
         int itemId = item.getItemId();
-        if(itemId == R.id.notification){
-            View menu
+
+        if(itemId == R.id.estadisticas){
+            showStatisticsPopup(item);
+            return true;
+        }else if(itemId == android.R.id.home){
+            finish();
+            return true;
+        }else{
+            return super.onOptionsItemSelected(item);
         }
     }
 
-    public void openStatistics(){
-        Intent intent = new Intent(this, EstadisticasActivity.class);
-        Boolean
+    private void showStatisticsPopup(@NonNull MenuItem item){
+        View menuItemV = findViewById(item.getItemId());
+        PopupMenu popupMenu = new PopupMenu(this, menuItemV);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_statistics, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(menuItem -> handlePopupMenuItemClick(menuItem));
+        popupMenu.show();
     }
+
+    private boolean handlePopupMenuItemClick(@NonNull MenuItem menuItem){
+        int itemId = menuItem.getItemId();
+        if(itemId == R.id.query_stats){
+            openStatisticsActivity();
+            return true;
+        }else{
+            return false;
+        }
+    }
+    private void openStatisticsActivity(){
+        Intent intent = createStatisticsIntent();
+        launcher.launch(intent);
+    }
+    private Intent createStatisticsIntent(){
+        Intent intent = new Intent(this, EstadisticasActivity.class);
+
+        intent.putExtra("startTime",startTime);
+        intent.putExtra("name", name);
+        intent.putExtra("estadisticas", notification);
+        intent.putExtra("numGame", numGame);
+        intent.putExtra("intento", trial);
+        intent.putExtra("numChars",numChars);
+        intent.putExtra("cantCharCorrect",numCharsCorrect);
+        intent.putExtra("chosenWord",chosenWord);
+        intent.putExtra("correctWords",correctW);
+        intent.putExtra("clickWords",clickW);
+        intent.putExtra("terminado",isOver);
+        intent.putExtra("msgGame",((TextView) findViewById(R.id.noti_game)).getText().toString());
+        return intent;
+    }
+
+
+
 }

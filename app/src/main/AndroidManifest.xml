@@ -14,15 +14,15 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".EstadisticasActivity"
-            android:exported="false">
-            android:parentActivityName=".GameActivity"/>
-        </activity>
-
-        <activity
             android:name=".GameActivity"
             android:exported="false">
             android:parentActivityName=".MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".EstadisticasActivity"
+            android:exported="false">
+            android:parentActivityName=".GameActivity"/>
         </activity>
 
         <activity
