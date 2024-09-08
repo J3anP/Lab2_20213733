@@ -97,15 +97,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //Para el context menu (ppt)
-    //@Override
-    public void onCreateContexMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
         super.onCreateContextMenu(menu,v,menuInfo);
         getMenuInflater().inflate(R.menu.menu_title_game,menu);
     }
 
     //gestión de eventos del context menu (ppt)
     //@Override
-    public boolean onContextItemSelect(@NonNull MenuItem item){
+    public boolean onContextItemSelected(@NonNull MenuItem item){
         if(item.getItemId() == R.id.opt_green){
             ((TextView) findViewById(R.id.title_game)).setTextColor(getColor(R.color.green));
         }else {
