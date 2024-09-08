@@ -217,21 +217,6 @@ public class GameActivity extends AppCompatActivity{
         msgGame.setText(msg);
     }
 
-    public void disabledBtn(ArrayList<String> clickW){
-        for (String l:clickW){
-            int rscId = getResources().getIdentifier("b"+l,"id",getPackageName());
-            ((Button)findViewById(rscId)).setEnabled(false);
-        }
-    }
-    public void renovarMuerto(ImageView[] telito_parts, int numGame){
-        for(int i=0; i<telito_parts.length;i++){
-            if(i<numGame){
-                telito_parts[i].setVisibility(View.VISIBLE);
-            }else{
-                telito_parts[i].setVisibility(View.INVISIBLE);
-            }
-        }
-    }
     public void cleanWords(String chosenWord, ArrayList<String> correctW){
 
         LinearLayout lyW = findViewById(R.id.word_game);
@@ -322,6 +307,9 @@ public class GameActivity extends AppCompatActivity{
         intent.putExtra("name", name);
         intent.putExtra("estadisticas", notification);
         intent.putExtra("numGame", numGame);
+        intent.putExtra("intento", trial);
+        intent.putExtra("numChars", numChars);
+        intent.putExtra("cantCharCorrect", numCharsCorrect);
         intent.putExtra("chosenWord",chosenWord);
         intent.putExtra("correctWords",correctW);
         intent.putExtra("clickWords",clickW);
@@ -336,9 +324,13 @@ public class GameActivity extends AppCompatActivity{
                 //Maneje la lógica para poder manejar el callback solo que salía errores así que decidí poner el código en blackBox y obtuve esto
                 if (result.getResultCode() == RESULT_OK) {
                     Intent data = result.getData();
-                    extractDataFromIntent(data);
-                    updateUI(data);
-                    handleGameLogic(data);
+                    if(data.getStringExtra("NewGame") != null){
+                        playGame();
+                    }else{
+                        extractDataFromIntent(data);
+                        updateUI(data);
+                        handleGameLogic(data);
+                    }
                 }
             }
     );

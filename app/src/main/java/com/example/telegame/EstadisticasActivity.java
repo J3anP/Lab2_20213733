@@ -39,11 +39,11 @@ public class EstadisticasActivity extends AppCompatActivity {
         String playerName = intentExtras.getString("name");
         ((TextView) findViewById(R.id.name)).setText("Jugador: " + playerName);
 
+        TextView texVStatistics = findViewById(R.id.stats);
         String statistics = intentExtras.getString("estadisticas");
-        if (!statistics.isEmpty()) {
-            ((TextView) findViewById(R.id.stats)).setText(statistics);
-        } else {
-            ((TextView) findViewById(R.id.stats)).setText(" ");
+
+        if (!(statistics.isEmpty())) {
+            texVStatistics.setText(statistics);
         }
     }
 

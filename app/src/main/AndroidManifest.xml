@@ -15,15 +15,13 @@
 
         <activity
             android:name=".GameActivity"
-            android:exported="false">
-            android:parentActivityName=".MainActivity"/>
-        </activity>
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
 
         <activity
             android:name=".EstadisticasActivity"
-            android:exported="false">
-            android:parentActivityName=".GameActivity"/>
-        </activity>
+            android:exported="false"
+            android:parentActivityName=".GameActivity" />
 
         <activity
             android:name=".MainActivity"
