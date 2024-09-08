@@ -355,7 +355,7 @@ public class GameActivity extends AppCompatActivity{
     }
 
     private void handleGameLogic(Intent data){
-        if(data.getStringExtra("NewGame").isEmpty()){
+        if(data.getStringExtra("NewGame") != null){
             cleanWords(chosenWord,correctW);
 
             for (String l:clickW){
