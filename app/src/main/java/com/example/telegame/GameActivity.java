@@ -125,7 +125,7 @@ public class GameActivity extends AppCompatActivity{
         correctW.clear();
         clickW.clear();
         //alfabeto ingles
-        List<Character> alfabetoE = Arrays.asList('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z');
+        List<Character> alfabetoE = Arrays.asList('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
         for (char letra:alfabetoE){
             String btnId = "b"+letra;
             int rscId = getResources().getIdentifier(btnId,"id",getPackageName());
@@ -180,7 +180,7 @@ public class GameActivity extends AppCompatActivity{
         if(numCharsCorrect==numChars){
             finishGame(true);
         }else{
-            updateMsgGame("Es correcto \n"+"Aun tienes "+(6-trial) + "intentos por jugar");
+            updateMsgGame(" ");
         }
     }
 
@@ -204,7 +204,7 @@ public class GameActivity extends AppCompatActivity{
         if(trial == telito_parts.length){
             finishGame(false);
         }else{
-            String msg = (trial == 5) ? "No es correcto \n" + "Tienes un último intento" : "No es correcto \n" + "Tienes " + (6 - trial) +" intentos";
+            String msg = " ";
             updateMsgGame(msg);
         }
     }
@@ -269,11 +269,71 @@ public class GameActivity extends AppCompatActivity{
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    //Manejo de las estadísticas esto fue con ayuda de YT y busqueda en google
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        int itemId = item.getItemId();
+
+        if(itemId == R.id.statistics){
+            showStatisticsPopup(item);
+            return true;
+        }else if(itemId == android.R.id.home){
+            finish();
+            return true;
+        }else{
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void showStatisticsPopup(@NonNull MenuItem item){
+        View menuItemV = findViewById(item.getItemId());
+        PopupMenu popupMenu = new PopupMenu(this, menuItemV);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_statistics, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(this::handlePopupMenuItemClick);
+        popupMenu.show();
+    }
+
+    private boolean handlePopupMenuItemClick(@NonNull MenuItem menuItem){
+        int itemId = menuItem.getItemId();
+        if(itemId == R.id.query_stats){
+            openStatisticsActivity();
+            return true;
+        }else{
+            return false;
+        }
+    }
+    private void openStatisticsActivity(){
+        /*
+        Intent intent = new Intent(GameActivity.this, EstadisticasActivity.class);
+        startActivity(intent);
+         */
+        Intent intent = createStatisticsIntent();
+        launcher.launch(intent);
+    }
+    private Intent createStatisticsIntent(){
+        Intent intent = new Intent(GameActivity.this, EstadisticasActivity.class);
+
+        intent.putExtra("startTime",startTime);
+        intent.putExtra("name", name);
+        intent.putExtra("estadisticas", notification);
+        intent.putExtra("numGame", numGame);
+        intent.putExtra("chosenWord",chosenWord);
+        intent.putExtra("correctWords",correctW);
+        intent.putExtra("clickWords",clickW);
+        intent.putExtra("terminado",isOver);
+        intent.putExtra("msgGame",((TextView) findViewById(R.id.noti_game)).getText().toString());
+        return intent;
+    }
+
     ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 //Maneje la lógica para poder manejar el callback solo que salía errores así que decidí poner el código en blackBox y obtuve esto
-
                 if (result.getResultCode() == RESULT_OK) {
                     Intent data = result.getData();
                     extractDataFromIntent(data);
@@ -305,8 +365,20 @@ public class GameActivity extends AppCompatActivity{
     private void handleGameLogic(Intent data){
         if(data.getStringExtra("NewGame").isEmpty()){
             cleanWords(chosenWord,correctW);
-            disabledBtn(clickW);
-            renovarMuerto(telito_parts,trial);
+
+            for (String l:clickW){
+                int rscId = getResources().getIdentifier("b"+l,"id",getPackageName());
+                ((Button)findViewById(rscId)).setEnabled(false);
+            }
+
+            for(int i=0; i<telito_parts.length;i++){
+                if(i<numGame){
+                    telito_parts[i].setVisibility(View.VISIBLE);
+                }else{
+                    telito_parts[i].setVisibility(View.INVISIBLE);
+                }
+            }
+
             cleanWords(chosenWord,correctW);
         }else{
             if(!isOver){
@@ -315,65 +387,4 @@ public class GameActivity extends AppCompatActivity{
             playGame();
         }
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-    //Manejo de las estadísticas esto fue con ayuda de YT y busqueda en google
-    public boolean onOptionsItemSelect(@NonNull MenuItem item){
-        int itemId = item.getItemId();
-
-        if(itemId == R.id.estadisticas){
-            showStatisticsPopup(item);
-            return true;
-        }else if(itemId == android.R.id.home){
-            finish();
-            return true;
-        }else{
-            return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void showStatisticsPopup(@NonNull MenuItem item){
-        View menuItemV = findViewById(item.getItemId());
-        PopupMenu popupMenu = new PopupMenu(this, menuItemV);
-        popupMenu.getMenuInflater().inflate(R.menu.menu_statistics, popupMenu.getMenu());
-        popupMenu.setOnMenuItemClickListener(menuItem -> handlePopupMenuItemClick(menuItem));
-        popupMenu.show();
-    }
-
-    private boolean handlePopupMenuItemClick(@NonNull MenuItem menuItem){
-        int itemId = menuItem.getItemId();
-        if(itemId == R.id.query_stats){
-            openStatisticsActivity();
-            return true;
-        }else{
-            return false;
-        }
-    }
-    private void openStatisticsActivity(){
-        Intent intent = createStatisticsIntent();
-        launcher.launch(intent);
-    }
-    private Intent createStatisticsIntent(){
-        Intent intent = new Intent(this, EstadisticasActivity.class);
-
-        intent.putExtra("startTime",startTime);
-        intent.putExtra("name", name);
-        intent.putExtra("estadisticas", notification);
-        intent.putExtra("numGame", numGame);
-        intent.putExtra("intento", trial);
-        intent.putExtra("numChars",numChars);
-        intent.putExtra("cantCharCorrect",numCharsCorrect);
-        intent.putExtra("chosenWord",chosenWord);
-        intent.putExtra("correctWords",correctW);
-        intent.putExtra("clickWords",clickW);
-        intent.putExtra("terminado",isOver);
-        intent.putExtra("msgGame",((TextView) findViewById(R.id.noti_game)).getText().toString());
-        return intent;
-    }
-
-
-
 }

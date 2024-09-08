@@ -43,7 +43,7 @@ public class EstadisticasActivity extends AppCompatActivity {
         if (!statistics.isEmpty()) {
             ((TextView) findViewById(R.id.stats)).setText(statistics);
         } else {
-            ((TextView) findViewById(R.id.stats)).setText("...");
+            ((TextView) findViewById(R.id.stats)).setText(" ");
         }
     }
 
@@ -52,7 +52,7 @@ public class EstadisticasActivity extends AppCompatActivity {
         btnNewNewGame.setOnClickListener(v -> {
             Intent resultIntent = new Intent();
             resultIntent.putExtras(intentExtras);
-            resultIntent.putExtra("NuevoJuego", "");
+            resultIntent.putExtra("NewGame", "");
             setResult(RESULT_OK, resultIntent);
             finish();
         });

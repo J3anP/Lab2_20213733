@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/estadisticas"
-        android:icon="@drawable/baseline_query_stats_24"
+        android:id="@+id/statistics"
+        android:icon="@drawable/query_stats"
         android:title="Estadisticas"
         app:showAsAction="ifRoom" />
 </menu>
