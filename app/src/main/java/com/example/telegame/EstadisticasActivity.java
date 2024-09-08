@@ -1,5 +1,6 @@
 package com.example.telegame;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,21 +26,23 @@ public class EstadisticasActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
-            Intent resultIntent = new Intent();
-            resultIntent.putExtras(intent.getExtras());
-            setResult(RESULT_OK, resultIntent);
+        if (item.getItemId() == android.R.id.home) {
+            Intent it = new Intent();
+            if (intent != null) {
+                it.putExtras(intent.getExtras());
+            }
+            setResult(RESULT_OK, it);
             finish();
             return true;
-        }else{
-            return false;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
     private void playerStatistics() {
         String playerName = intent.getStringExtra("name");
         TextView playerNameTV = findViewById(R.id.name);
-        playerNameTV.setText("Jugador: " + playerName);
+        playerNameTV.setText(String.format("Jugador: %s", playerName));
 
         TextView textVStatistics = findViewById(R.id.stats);
         String playerStats = intent.getStringExtra("estadisticas");
@@ -49,16 +52,17 @@ public class EstadisticasActivity extends AppCompatActivity {
         }else{
             textVStatistics.setText(R.string.no_stats_available);
         }
-
     }
 
     private void btnNewNewGame() {
         Button btnNewNewGame = findViewById(R.id.btnNewNewGame);
         btnNewNewGame.setOnClickListener(v -> {
-            Intent resultIntent = new Intent();
-            resultIntent.putExtras(intent.getExtras());
-            resultIntent.putExtra("NewGame", true);
-            setResult(RESULT_OK, resultIntent);
+            Intent it = new Intent();
+            if (intent != null) {
+                it.putExtras(intent.getExtras());
+            }
+            it.putExtra("NewGame", true);
+            setResult(RESULT_OK, it);
             finish();
         });
     }
