@@ -39,10 +39,13 @@
     </LinearLayout>
 
     <!-- Contenedor de texto con scroll para estadísticas -->
+
+    <!-- Botón para iniciar un nuevo juego -->
+
     <ScrollView
         android:id="@+id/scroll"
-        android:layout_width="305dp"
-        android:layout_height="377dp"
+        android:layout_width="296dp"
+        android:layout_height="350dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
@@ -51,21 +54,23 @@
         android:padding="50dp"
         app:layout_constraintBottom_toTopOf="@id/btnLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleE">
+        app:layout_constraintTop_toBottomOf="@id/titleE"
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/stats"
-            android:layout_width="50dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
             android:background="#FFFFFF"
-            android:text="..."
+            android:lineHeight="25dp"
+            android:text="...."
             android:textAlignment="textStart"
             android:textSize="15sp" />
     </ScrollView>
 
-    <!-- Botón para iniciar un nuevo juego -->
     <LinearLayout
         android:id="@+id/btnLayout"
         android:layout_width="0dp"
