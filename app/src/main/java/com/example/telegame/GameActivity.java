@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResult;
@@ -61,7 +63,6 @@ public class GameActivity extends AppCompatActivity{
 
         word_list = getResources().getStringArray(R.array.words_game);
         wordLayout=findViewById(R.id.word_game);
-
 
         telito_parts=new ImageView[sizeTelitoParts];
         telito_parts[0] = findViewById(R.id.head);
@@ -310,5 +311,18 @@ public class GameActivity extends AppCompatActivity{
             }
             playGame();
         }
+    }
+
+    //Manejo de las estadísticas
+    public boolean onOptionsItemSelect(@NonNull MenuItem item){
+        int itemId = item.getItemId();
+        if(itemId == R.id.notification){
+            View menu
+        }
+    }
+
+    public void openStatistics(){
+        Intent intent = new Intent(this, EstadisticasActivity.class);
+        Boolean
     }
 }

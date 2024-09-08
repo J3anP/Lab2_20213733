@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".GameActivity">
 <!-- si sale error al compilar puede que sea con la imagen brazodere_piernaizq, debido al nombre, siempre me salía en rojo así
 pero funcionaba -->
     <LinearLayout
