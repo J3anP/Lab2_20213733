@@ -25,10 +25,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.app.ActivityOptionsCompat;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,8 +51,8 @@ public class GameActivity extends AppCompatActivity{
     private long startTime;
     private int trial;
     private boolean isOver=false;
-    public String notification="";
-    public String name="";
+    public String notification;
+    public String name;
 
 
     @Override
@@ -253,12 +250,13 @@ public class GameActivity extends AppCompatActivity{
         }
     }
 
+    //Material diapositiva
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
-    //Manejo de las estadísticas esto fue con ayuda de YT y busqueda en google
+    //Manejo de las estadísticas esto fue con ayuda de la ppt y busqueda en google
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         int itemId = item.getItemId();
