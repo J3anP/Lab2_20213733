@@ -96,6 +96,11 @@ public class GameActivity extends AppCompatActivity{
     //Manejo del juego
     private void playGame(){
         numGame++;
+
+        for (ImageView imgV: telito_parts){
+            imgV.setVisibility(View.INVISIBLE);
+        }
+
         String rdWord=word_list[new Random().nextInt(word_list.length)];
         while (rdWord.equals(chosenWord))rdWord = word_list[rd.nextInt(word_list.length)];
         chosenWord = rdWord;
@@ -113,12 +118,6 @@ public class GameActivity extends AppCompatActivity{
             wordLayout.addView(charV[i]);
         }
 
-        for (ImageView imgV: telito_parts){
-            imgV.setVisibility(View.INVISIBLE);
-        }
-
-        //((TextView) findViewById(R.id.noti_game)).setText("Qué comience el juego :D");
-        //configuración del juego
         configurationGame();
     }
 
@@ -143,7 +142,6 @@ public class GameActivity extends AppCompatActivity{
         trial= 0;
         numCharsCorrect=0;
         startTime= System.currentTimeMillis();
-        Log.d(TAG,notification);
     }
 
     public void tapping(View v){
@@ -235,7 +233,6 @@ public class GameActivity extends AppCompatActivity{
             String l=String.valueOf(chosenWord.charAt(i));
             TextView copyL = new TextView(this);
             copyL.setId(View.generateViewId());
-
             //con chatgpt solo consulte para poder modificar los view en un layout
             LinearLayout.LayoutParams parameters = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -326,13 +323,17 @@ public class GameActivity extends AppCompatActivity{
                 //Maneje la lógica para poder manejar el callback solo que salía errores así que decidí consultar con AI para ver cual era el error y la major manera era separando
                 if (result.getResultCode() == RESULT_OK) {
                     Intent data = result.getData();
-                    if(data.getStringExtra("NewGame") != null){
-                        playGame();
-                    }else{
-                        extractDataFromIntent(data);
-                        TextView msgGame = findViewById(R.id.noti_game);
-                        msgGame.setText(data.getStringExtra("msgGame"));
-                        handleGameLogic(data);
+                    if (data != null) {
+                        boolean isNewGame = data.getBooleanExtra("NewGame", false);
+                        if (isNewGame) {
+                            playGame();
+                        } else {
+                            extractDataFromIntent(data);
+                            TextView msgGame = findViewById(R.id.noti_game);
+                            String msg = data.getStringExtra("msgGame");
+                            msgGame.setText(msg != null ? msg : "");
+                            handleGameLogic(data);
+                        }
                     }
                 }
             }
